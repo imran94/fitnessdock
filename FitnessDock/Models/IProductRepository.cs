@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDock.Models
 {
-    interface IProductRepository
+    public interface IProductRepository
     {
         IQueryable<Product> Products { get; }
     }

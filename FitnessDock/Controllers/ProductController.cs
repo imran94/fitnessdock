@@ -19,9 +19,10 @@ namespace FitnessDock.Controllers
         }
 
         // Passes a ProductsListViewModel object as the model data to the view
-        public ViewResult List(int productPage = 1) 
+        public ViewResult List(string category, int productPage = 1) 
             => View(new ProductsListViewModel {
                 Products = repository.Products
+                    .Where(p => category == null || p.Category == category)
                     .OrderBy(p => p.ProductId)
                     .Skip((productPage - 1) * PageSize)
                     .Take(PageSize),
@@ -30,7 +31,8 @@ namespace FitnessDock.Controllers
                     CurrentPage = productPage,
                     ItemsPerPage = PageSize,
                     TotalItems = repository.Products.Count()
-                }
+                },
+                CurrentCategory = category
             });
     }
 }

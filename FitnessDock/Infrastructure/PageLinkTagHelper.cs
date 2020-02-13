@@ -29,6 +29,7 @@ namespace FitnessDock.Infrastructure
         public PagingInfo PageModel { get; set; }
         public string PageAction { get; set; }
 
+        // Specify a prefix for attribute name
         [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
         public Dictionary<string, object> PageUrlValues { get; set; }
             = new Dictionary<string, object>();
@@ -55,8 +56,8 @@ namespace FitnessDock.Infrastructure
                     tag.AddCssClass(i == PageModel.CurrentPage
                         ? PageClassSelected : PageClassNormal);
                 }
-                //tag.InnerHtml.Append(i.ToString());
-                //result.InnerHtml.AppendHtml(tag);
+                tag.InnerHtml.Append(i.ToString());
+                result.InnerHtml.AppendHtml(tag);
             }
             output.Content.AppendHtml(result.InnerHtml);
         }
